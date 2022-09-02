@@ -9,8 +9,10 @@ de moedas com as quais essa mudança pode ser feita.
 */
 
 
-int main(){
-    float troco=0;int contaMoeda = 0, calculaMoeda = 0, cont = 0;
+int main()
+{
+    float troco = 0;
+    int contaMoeda = 0, calculaMoeda = 0, cont = 0;
 
     do
     {
@@ -20,46 +22,37 @@ int main(){
     while (troco < 0.01 && troco <= 0.00);
 
     int centavos = round(troco * 100);
-    printf("%d \n",centavos);
     calculaMoeda = centavos;
 
-
-    if(calculaMoeda >= 25){
-        for(cont = 1; calculaMoeda > 0; cont++){
+    for (cont = 1; calculaMoeda > 0; cont++)
+    {
+        if (calculaMoeda >= 25)
+        {
             calculaMoeda -= 25;
             contaMoeda++;
-            printf("rodada (25) %d\n", calculaMoeda);
         }
-    }
 
-    if(calculaMoeda >= 10 && calculaMoeda < 25){
-       for(cont = 1; calculaMoeda > 0; cont++){
+        if (calculaMoeda >= 10 && calculaMoeda < 25)
+        {
             calculaMoeda -= 10;
             contaMoeda++;
-            printf("rodada (10) %d\n", calculaMoeda);
         }
-     }
 
-      if(calculaMoeda >= 5 && calculaMoeda <= 10){
-       for(cont = 1; calculaMoeda > 0; cont++){
+        if (calculaMoeda >= 5 && calculaMoeda < 10)
+        {
             calculaMoeda -= 5;
             contaMoeda++;
-            printf("rodada (5) %d\n", calculaMoeda);
         }
-     }
 
-    if(calculaMoeda < 5){
-        for(cont = 1; calculaMoeda > 0; cont++){
-             calculaMoeda -= 1;
-             contaMoeda++;
-               printf("rodada (1) %d\n", calculaMoeda);
-         }
-      }
+        if (calculaMoeda < 5 && calculaMoeda > 0)
+        {
+            calculaMoeda -= 1;
+            contaMoeda++;
+        }
 
+    }
 
-
-    printf("%d\n",calculaMoeda);
-    printf("%d\n",contaMoeda);
+    printf("%d\n", contaMoeda);
 
     return 0;
 
