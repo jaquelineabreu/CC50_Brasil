@@ -25,12 +25,12 @@ int main(void)
             l++;
         }else{
             if(texto[i] == 32){
-            p++;
+              p++;
             }else{
                 if(texto[i] == 33 || texto[i] == 63 || texto[i] == 46){
                 f++;
             }
-            }
+           }
         }
 
        i++;
