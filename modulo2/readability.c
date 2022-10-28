@@ -4,60 +4,46 @@
 #include <string.h>
 #include <math.h>
 
-/*
-    Seu programa deve contar o número de letras, palavras e frases do texto.
-    Implemente um programa que calcule o nível (representado a partir de uma série, como na escola)
-    aproximado necessário para compreender algum texto, conforme a seguir.
-*/
-
 int main(void)
 {
-    int i = 0, n = 0, l = 0, p = 0, f = 0;
-    //double indice = 0;
-    string texto = get_string("Digite o texto: ");
+    int letras = 0, palavras = 1, frases = 0;
 
-    //Letras
-    n = strlen(texto);
-    while(i < n)
+    string texto = get_string("Texto: ");
+    int tamanhoTexto = strlen(texto);
+
+    for (int i = 0; i < tamanhoTexto; i++)
     {
-        if ((texto[i] >= 65 && texto[i] <= 90) || (texto[i] >= 97 && texto[i] <= 122))
+        if (isalpha(texto[i]))
         {
-            l++;
-        }else{
-            if(texto[i] == 32){
-              p++;
-            }else{
-                if(texto[i] == 33 || texto[i] == 63 || texto[i] == 46){
-                f++;
-            }
-           }
+            letras++;
         }
-
-       i++;
-    }
-
-    printf("\n");
-
-    float L = l / (float) p * 100;
-    float S = f / (float) p * 100;
-    int indice = (0.0588 * L) - (0.296 * S) - 15.8;
-   // int grade = round(indice);
-
-    if(indice >= 1 && indice < 16){
-        printf("Grade %d\n", indice);
-    }else{
-        if(indice >= 16)
+        else if (texto[i] == ' ')
         {
-          printf("Grade 16+\n");
+            palavras++;
         }
-        else{
-            printf("Before Grade 1\n");
+        else if (texto[i] == '!' || texto[i] == '?' || texto[i] == '.')
+        {
+            frases++;
         }
 
     }
 
-    printf("\n");
+    float L = ((float) letras / palavras) * 100;
+    float S = ((float) frases / palavras) * 100;
+    float indice = (0.0588 * L - 0.296 * S - 15.8);
+    int grade = round(indice);
 
-    return 0;
+
+    if (grade < 1)
+    {
+        printf("Before Grade 1\n");
+    }
+    else if (grade > 16)
+    {
+        printf("Grade 16+\n");
+    }
+    else
+    {
+        printf("Grade %i\n", grade);
+    }
 }
-
